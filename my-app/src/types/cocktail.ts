@@ -1,4 +1,4 @@
-export type Drink = {
+export type Cocktail = {
   idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
@@ -25,5 +25,5 @@ export type Drink = {
 };
 
 export type CocktailsRes = {
-  drinks: Drink[];
+  drinks: Cocktail[];
 };

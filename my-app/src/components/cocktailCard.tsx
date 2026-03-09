@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Drink } from "@/types/cocktail";
+import { Cocktail } from "@/types/cocktail";
 
 type Props = {
-  drink: Drink;
+  drink: Cocktail;
 };
 
-export default function Cocktail({ drink }: Props) {
+export default function CocktailCard({ drink }: Props) {
   return (
     <Link href={`/cocktail/${drink.idDrink}`}>
       <div className="cocktail-card">

@@ -23,20 +23,28 @@ h1 {
 
 .cocktails-grid {
   display: grid;
+  flex-wrap: wrap;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
   gap: 20px;
+  justify-content: center;
 }
 
 .cocktail-card {
-  background: white;
-  padding: 10px;
-  border: 1px solid #ddd;
+  background-color: white; 
+  border-radius: 8px;
+  box-shadow: 0 2px 5px grey;
+  padding: 1rem;
+  width: 200px; 
   text-align: center;
-  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .cocktail-card img {
   width: 100%;
+}
+
+.cocktail-card:hover {
+  transform: translateY(-5px);
 }
 
 .detail-page img {

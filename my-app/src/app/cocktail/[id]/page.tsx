@@ -1,5 +1,5 @@
 import { getCocktailById } from "@/lib/api/cocktail";
-import { Drink } from "@/types/cocktail";
+import { Cocktail } from "@/types/cocktail";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -35,11 +35,11 @@ export default async function CocktailDetail({ params }: PageProps) {
 
   return (
     <main className="detail-page">
+      <h1>{drink.strDrink}</h1>
       <img
         src={drink.strDrinkThumb}
         alt={drink.strDrink}
       />
-      <p>Nombre: {drink.strDrink}</p>
       <p>Categoría: {drink.strCategory}</p>
       <p>Es alcoholico: {drink.strAlcoholic}</p>
       <p>Tipo de vaso: {drink.strGlass}</p>
