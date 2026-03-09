@@ -1,5 +1,6 @@
 import { getCocktailById } from "@/lib/api/cocktail";
 import { Cocktail } from "@/types/cocktail";
+import BackButton from "@/components/backButton";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -50,6 +51,8 @@ export default async function CocktailDetail({ params }: PageProps) {
           <li key={index}>{ingredient}</li>
         ))}
       </ul>
+      <br/>
+      <BackButton />
     </main>
   );
 }
