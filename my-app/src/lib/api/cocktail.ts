@@ -1,30 +1,23 @@
-import { Cocktail } from "@/types";
+import axios from "axios";
+import { CocktailsRes } from "@/types/cocktail";
 
+const api = axios.create({
+  baseURL: "https://www.thecocktaildb.com/api/json/v1/1",
+});
 
-import { api } from "./axios";
+export const getCocktails = async (): Promise<CocktailsRes> => {
+  const res = await api.get("/search.php?s=margarita");
+  return res.data;
+};
 
+export const getCocktailById = async (
+  id: string
+): Promise<CocktailsRes> => {
+  const res = await api.get(`/lookup.php?i=${id}`);
+  return res.data;
+};
 
-
-export async function getFrontpageCocktails() {
-  const response = await api.get<Cocktail[]>(`/search.php?s=margarita`);
-  return response.data;
-}
-
-export async function getRandomCocktail() {
-  const response = await api.get<Cocktail[]>(`/random.php`);
-  return response.data;
-}
-
-
-/*
-export async function getCountryByName(name: string) {
-  const response = await api.get<Country>(`/name/${name}`);
-  return response.data;
-}
-
-export async function getCountriesByRegion(region: string) {
-  const response = await api.get<Country>(`/region/${region}`);
-  return response.data;
-}
-
-*/
+export const getRandomCocktail = async (): Promise<CocktailsRes> => {
+  const res = await api.get("/random.php");
+  return res.data;
+};

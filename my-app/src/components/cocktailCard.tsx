@@ -1,22 +1,19 @@
 import Link from "next/link";
-import { Cocktail } from "@/types/";
-import "./style.css";
+import { Drink } from "@/types/cocktail";
 
+type Props = {
+  drink: Drink;
+};
 
-interface Props {
-  cocktail: Cocktail;
-}
-
-export default function CocktailCard({ cocktail }: Props) {
+export default function Cocktail({ drink }: Props) {
   return (
-    <Link href={`/country/${cocktail.name || ""}`}>
-      <div className="card">
+    <Link href={`/cocktail/${drink.idDrink}`}>
+      <div className="cocktail-card">
         <img
-          src={cocktail.img || ""}
+          src={drink.strDrinkThumb}
+          alt={drink.strDrink}
         />
-        <h3>{cocktail.name || "Unknown"}</h3>
-        <p>Instrucciones: {cocktail.instructions ?? "N/A"}</p>
-        <br/>
+        <h3>{drink.strDrink}</h3>
       </div>
     </Link>
   );

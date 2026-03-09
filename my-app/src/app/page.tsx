@@ -1,51 +1,22 @@
-'use client';
-
-import { getFrontpageCocktails } from "@/lib/api/cocktail";
 import CocktailCard from "@/components/cocktailCard";
-import { Cocktail } from "@/types";
-import { useEffect, useState } from "react";
-import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import RandomButton from "@/components/randomButton";
+import { getCocktails } from "@/lib/api/cocktail";
 
-const Home = () => {
-
-
-  const [cocktails, setCocktails] = useState<Cocktail[]>([]);
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    getFrontpageCocktails()
-      .then((res) => setCocktails(res))
-      .catch((e: AxiosError) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
-
-  const router = useRouter();
-/*
-   {cocktails.map((cocktails) => (
-          <CocktailCard
-            key={cocktail.id}
-            country={cocktail.name}
-          />
-        ))}
-*/
-
-  if (loading) return <h1>Loading...</h1>;
-  if (error) return <h1>{error}</h1>;
+export default async function HomePage() {
+  const data = await getCocktails();
+  const cocktails = data.drinks || [];
 
   return (
-    <main>
-      <h1>Página principal</h1>
+    <main className="home-page">
+      <h1 className="title">Página de cocktails</h1>
 
-      <button onClick={()=>{
-        router.push("https://www.thecocktaildb.com/api/json/v1/1/random.php")}}>Dime algo bonito</button>
-      <div className="grid">
+      <RandomButton />
 
-        
+      <div className="cocktails-grid">
+        {cocktails.map((drinks) => (
+          <CocktailCard key={drinks.idDrink} drink={drinks} />
+        ))}
       </div>
     </main>
   );
-};
-
-export default Home;
+}
