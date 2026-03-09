@@ -12,7 +12,7 @@ export default async function CocktailDetail({ params }: PageProps) {
   const drink = data.drinks?.[0];
 
   if (!drink) {
-    return <p>No se encuentra</p>;
+    return <p>No se puede encontrar el cocktail</p>;
   }
 
   const ingredients = [
@@ -39,12 +39,12 @@ export default async function CocktailDetail({ params }: PageProps) {
         src={drink.strDrinkThumb}
         alt={drink.strDrink}
       />
-      <p>Name: {drink.strDrink}</p>
+      <p>Nombre: {drink.strDrink}</p>
       <p>Categoría: {drink.strCategory}</p>
-      <p>Si es alcohólico o no: {drink.strAlcoholic}</p>
-      <p>Tipo de vaso necesario: {drink.strGlass}</p>
+      <p>Es alcoholico: {drink.strAlcoholic}</p>
+      <p>Tipo de vaso: {drink.strGlass}</p>
       <p>Instrucciones en inglés: {drink.strInstructions}</p>
-      <p>Ingredientes: </p>
+      <p>Ingredientes necesarios: </p>
       <ul>
         {ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient}</li>
